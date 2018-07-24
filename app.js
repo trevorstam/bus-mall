@@ -11,14 +11,14 @@ var allProducts = [];
 var leftImage = document.getElementById('left');
 var centerImage = document.getElementById('center');
 var rightImage = document.getElementById('right');
-var imageContainer = document.getElementById('container');
+var imageContainer = document.getElementById('image-container');
 var totalClicks = 0;
 
 //constructor function
 function Product(name){
   this.name = name;
   // this.path = 'img/' + name + '.jpg';
-  this.path = `img/${name}.jpg`;//use backticks instead of ' '.
+  this.path = `images/${name}.jpg`;//use backticks instead of ' '.
   this.views = 0;
   this.votes = 0;
   allProducts.push(this);
@@ -30,7 +30,7 @@ for (var i = 0; i < productNames.length; i++){
 
 //create random function
 function generateRandom(){
-  Math.floor(Math.random() * allProducts.length);
+  return Math.floor(Math.random() * allProducts.length);
 }
 
 //create three random images
@@ -38,12 +38,13 @@ function randomImages(){
 
   var randIndexes = [];
 
-  randIndexes[0] = generateRandom();
+  randIndexes[0] = (generateRandom());
 
-  randIndexes[1] = generateRandom();
+  randIndexes[1] = (generateRandom());
 
 
   //CHECK FOR DUPLICATE STEP 1
+  console.log('check loop', randIndexes);
   while(randIndexes[0] === randIndexes[1]){
     randIndexes[1] = generateRandom();
     console.log('duplicate prevented');
@@ -75,6 +76,7 @@ function randomImages(){
 //add event listener
 
 function clickImage(e){
+  e.preventDefault();
   //you don't want users to click on background but on images.
   if (e.target.id === 'image-container'){
     return alert('click on images, not on background');
@@ -89,9 +91,10 @@ function clickImage(e){
   totalClicks++;
   console.log('totalclicks', totalClicks);
 
-  if (totalClicks > 24){
-    return alert('No more clicks left');
+  if (totalClicks > 24){    
     imageContainer.removeEventListener('click', clickImage);
+
+    return alert('No more clicks left');
   }
 
   console.log(e.target, 'was clicked');
