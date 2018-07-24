@@ -1,87 +1,109 @@
 
 'use strict';
 
-//create global variables
-var images = ['images/bag.jpg', 'images/banana.jpg', 'images/bathroom.jpg', 'images/boots.jpg', 'images/breakfast.jpg', 'images/bubblegum.jpg',
-  'images/chair.jpg', 'images/cthulhu.jpg', 'images/dog-duck.jpg', 'images/dragon.jpg', 'images/pen.jpg', 'images/pet-sweep.jpg', 'images/scissors.jpg', 'shark.jpg',
-  'images/sweep.jpg', 'images/tauntaun.jpg', 'images/unicorn.jpg', 'images/usb.gif', 'images/water-can.jpg', 'images/wine-glass.jpg'];
+//BUSMALL refactoring
+var productNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegum',
+  'chair', 'cthulhu', 'dog-duck', 'dragon', 'pen', 'pet-sweep', 'scissors', 'shark',
+  'sweep', 'tauntaun', 'unicorn', 'usb', 'water-can', 'wine-glass'];
 
-var productList = [];
+var allProducts = [];
 
+var leftImage = document.getElementById('left');
+var centerImage = document.getElementById('center');
+var rightImage = document.getElementById('right');
+var imageContainer = document.getElementById('image-container');
+var totalClicks = 0;
 
-// construct object for products
-function Product(image, filePath){
-  this.image = image.split('.')[0];
-  this.filePath = filePath;
-  this.clickNum = 0;
+//constructor function
+function Product(name){
+  this.name = name;
+  // this.path = 'img/' + name + '.jpg';
+  this.path = `images/${name}.jpg`;//use backticks instead of ' '.
+  this.views = 0;
   this.votes = 0;
-  productList.push(this);
+  allProducts.push(this);
 }
 
-
-function objectMaker(){
-  for (var i = 0; i < images.length; i++) {
-    productList.push(new Product(images[i]));
-  }
+for (var i = 0; i < productNames.length; i++){
+  new Product(productNames[i]);
 }
 
-objectMaker();
-
-//write random number generator
+//create random function
 function generateRandom(){
-  Math.floor(Math.random() * images.length);
+  return Math.floor(Math.random() * allProducts.length);
 }
 
-// get element of image-container
-var imageLeft = document.getElementById('img1');
-var imageCenter = document.getElementById('img2');
-var imageRight = document.getElementById('img3');
-//use that to generate random image to page
-//make three random images for page
-function threeImageGenerator(Product){
-  //create random image 1
-  var img1 = generateRandom(Product);
-  console.log('img1', img1);
-  
-  var img2 = generateRandom(Product);
+//create three random images
+function randomImages(){
 
-  if (img1 === img2) {
-    return img2 = generateRandom(Product);
-  } else {
-    var imgEleTwo = document.createElement('img2');
-    imgEleTwo.innerHTML = '<img src=' + images[img2].filePath + '>';
+  var randIndexes = [];
 
+  randIndexes[0] = (generateRandom());
+
+  randIndexes[1] = (generateRandom());
+
+
+  //CHECK FOR DUPLICATE STEP 1
+  console.log('check loop', randIndexes);
+  while(randIndexes[0] === randIndexes[1]){
+    randIndexes[1] = generateRandom();
+    console.log('duplicate prevented');
   }
 
-  var img3
+  randIndexes[2] = generateRandom();
 
+  //CHECK FOR DUPLICATES STEP 2
+  while (randIndexes[2] === randIndexes[0] || randIndexes[2] ===randIndexes[1]){
+    randIndexes[2] = generateRandom();
+    console.log('duplicate checker #2 caught a dupe');
+  }
 
+  //for each of the empty img tags, assign a random source attribute and a name.
+  leftImage.src = allProducts[randIndexes[0]].path;
+  centerImage.src = allProducts[randIndexes[1]].path;
+  rightImage.src = allProducts[randIndexes[2]].path;
+  leftImage.title = allProducts[randIndexes[0]].name;
+  centerImage.title = allProducts[randIndexes[1]].name;
+  rightImage.title = allProducts[randIndexes[2]].name;
 
+  allProducts[randIndexes[0]].views += 1;
+  allProducts[randIndexes[1]].views += 1;
+  allProducts[randIndexes[2]].views += 1;
 }
 
-threeImageGenerator();
+//DON'T CALL FUNCTION randomImages HERE!! THROWS INFINITE LOOP
 
+//add event listener
 
+function clickImage(e){
+  e.preventDefault();
+  //you don't want users to click on background but on images.
+  if (e.target.id === 'image-container'){
+    return alert('click on images, not on background');
+  }
+  console.log(e.target.title);
+  for (var i =0; i < allProducts.length; i++){
+    if (e.target.title === allProducts[i].name){
+      allProducts[i].votes += 1;
+    }
+  }
 
+  totalClicks++;
+  console.log('totalclicks', totalClicks);
 
-//put event listener images
+  if (totalClicks > 24){    
+    imageContainer.removeEventListener('click', clickImage);
 
-//make sure there are no duplicates
+    return alert('No more clicks left');
+  }
 
-//store previous one and compare to next --> if true than generate new
+  console.log(e.target, 'was clicked');
+  randomImages();
+}
 
+randomImages();
 
-
-//generate random combinations of picture
-//use for loop to go through images array
-
-//use another for loop --> for j = i + 1 ; j < images.length; j ++
-//if images[i] === images[j]; --> return true
-//else return false
-
-//publish images to image container in html
-
-//add event listeners to picture id's to trigger functions
+imageContainer.addEventListener('click', clickImage);
 
 
 
