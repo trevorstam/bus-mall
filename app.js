@@ -12,7 +12,9 @@ var leftImage = document.getElementById('left');
 var centerImage = document.getElementById('center');
 var rightImage = document.getElementById('right');
 var imageContainer = document.getElementById('image-container');
+var unorderedList = document.getElementById('results');
 var totalClicks = 0;
+var voteTotal = [];
 
 //constructor function
 function Product(name){
@@ -91,19 +93,80 @@ function clickImage(e){
   totalClicks++;
   console.log('totalclicks', totalClicks);
 
-  if (totalClicks > 24){    
+  if (totalClicks > 24){
     imageContainer.removeEventListener('click', clickImage);
+    showResults();
+
+    renderChart();
 
     return alert('No more clicks left');
   }
 
+
   console.log(e.target, 'was clicked');
   randomImages();
 }
+function showResults() {
+  for (var i in allProducts) {
+    var listElement = document.createElement('li');
+    listElement.innerHTML = allProducts[i].votes + ' clicks for ' + allProducts[i].name;
+    unorderedList.appendChild(listElement);
+    //push all the votes into the voteTotal array to use for the chart. After all this will be displayed
+    voteTotal.push(allProducts[i].votes);
+
+  }
+}
+
 
 randomImages();
 
+
+
+
 imageContainer.addEventListener('click', clickImage);
+
+
+//create chart function
+
+var colorArray = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6',
+  '#E6B333', '#3366E6', '#999966', '#99FF99', '#B34D4D',
+  '#80B300', '#809900', '#E6B3B3', '#6680B3', '#66991A',
+  '#FF99E6', '#CCFF1A', '#FF1A66', '#E6331A', '#33FFCC',
+  '#66994D', '#B366CC', '#4D8000', '#B33300', '#CC80CC',
+  '#66664D', '#991AFF', '#E666FF', '#4DB3FF', '#1AB399',
+  '#E666B3', '#33991A', '#CC9999', '#B3B31A', '#00E680',
+  '#4D8066', '#809980', '#E6FF80', '#1AFF33', '#999933',
+  '#FF3380', '#CCCC00', '#66E64D', '#4D80CC', '#9900B3',
+  '#E64D66', '#4DB380', '#FF4D4D', '#99E6E6', '#6666FF'];
+
+function renderChart(){
+
+  var context = document.getElementById('myChart').getContext('2d');
+
+  var chart = new Chart(context,{
+    type: 'bar',
+    data: {
+      labels: productNames,
+      datasets:[{
+        label: 'Number of votes',
+        data: voteTotal,
+        backgroundColor: colorArray,
+        borderWidth: 1,
+
+      }],
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    }
+  });
+}
+
 
 
 
