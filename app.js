@@ -8,6 +8,13 @@ var productNames = ['bag', 'banana', 'bathroom', 'boots', 'breakfast', 'bubblegu
 
 var allProducts = [];
 
+
+//check condition for local storage
+if (localStorage.getItem('chartData')){
+  allProducts = JSON.parse(localStorage.getItem('chartData'));
+
+}
+
 var leftImage = document.getElementById('left');
 var centerImage = document.getElementById('center');
 var rightImage = document.getElementById('right');
@@ -107,6 +114,7 @@ function clickImage(e){
   randomImages();
 }
 function showResults() {
+
   for (var i in allProducts) {
     var listElement = document.createElement('li');
     listElement.innerHTML = allProducts[i].votes + ' clicks for ' + allProducts[i].name;
@@ -143,13 +151,27 @@ function renderChart(){
 
   var context = document.getElementById('myChart').getContext('2d');
 
+
+  //setting items to local storage when rendering chart
+  localStorage.setItem('chartData', JSON.stringify(allProducts));
+
+  // var namesOfImages = [];
+  var clicksOfImages = [];
+
+  for (var i of allProducts)
+  {
+    // namesOfImages.push(i.name);
+    clicksOfImages.push(i.votes);
+  }
+
+
   var chart = new Chart(context,{
     type: 'bar',
     data: {
       labels: productNames,
       datasets:[{
         label: 'Number of votes',
-        data: voteTotal,
+        data: clicksOfImages,
         backgroundColor: colorArray,
         borderWidth: 1,
 
@@ -166,6 +188,7 @@ function renderChart(){
     }
   });
 }
+
 
 
 
