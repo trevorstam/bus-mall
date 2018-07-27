@@ -1,9 +1,10 @@
 #image-container {
+    margin: 0 auto;
     width: 960px;
 }
 
 img {
-    position: absolute;
+    position: relative;
     width: 200px;
     height: 200px;
 }

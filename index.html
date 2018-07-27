@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-        <h2>Bus Mall</h2>
+        <h1>Bus Mall</h1>
         <nav>
             <a href="">Home</a>
             <a href="">Products</a>
@@ -19,33 +19,31 @@
 
     </header>
     <main>
-        <aside id="results">
+        <aside>
             <h3>Results</h3>
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
+            <ul id="results">
+                
             </ul>
         </aside>
 
+        <section id="image-container">
+            <p>Click on the image of your choice!</p>
+            <img id ="left"/>
+            <img id="center"/>
+            <img id="right"/>
+            
+        </section>
 
-
+        <div id="chart">
+            <canvas id = "myChart" width="800px" height="400px"></canvas>
+        </div>
 
     </main>
     <footer>
 
-
-
-
-
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="app.js"></script>
     
 </body>
 </html>
