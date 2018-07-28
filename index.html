@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
     <title>Bus Mall project</title>
 </head>
 <body>
-    <header>
-        <h2>Bus Mall</h2>
+    <header class="container">
+        <h1>Bus Mall</h1>
+        <!-- <img src="https://upload.wikimedia.org/wikipedia/commons/b/b8/Bus_with_Passengers_-_Indian_National_Highway_34_-_Nakashipara_-_Nadia_2013-03-23_7099.JPG" alt="bus" id="bus-pic"> -->
         <nav>
             <a href="">Home</a>
             <a href="">Products</a>
@@ -18,32 +22,36 @@
         </nav>
 
     </header>
-    <main>
-        <aside>
+    <main class="container">
+        <!-- <aside>
             <h3>Results</h3>
             <ul id="results">
                 
             </ul>
-        </aside>
+        </aside> -->
+        <div id="introduction">
+            <h3>Welcome to Bus Mall!</h3>
+            <p></strong>Click on the image of your choice!</strong></p>
+            <p>Once you've clicked on 25 successive images</p>
+            <p>a barchart will appear that displays the most popular items for the catalog.</p>
+        </div>
+        
 
         <section id="image-container">
-            <p>Instructions ............</p>
+            
             <img id ="left"/>
             <img id="center"/>
             <img id="right"/>
             
         </section>
-        <button>Vote!</button>
 
         <div id="chart">
             <canvas id = "myChart" width="800px" height="400px"></canvas>
         </div>
 
-
-
-
     </main>
-    <footer>
+    <footer class="container">
+        Trevor Stam &copy 2018
 
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>

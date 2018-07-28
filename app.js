@@ -19,7 +19,7 @@ var leftImage = document.getElementById('left');
 var centerImage = document.getElementById('center');
 var rightImage = document.getElementById('right');
 var imageContainer = document.getElementById('image-container');
-var unorderedList = document.getElementById('results');
+// var unorderedList = document.getElementById('results');
 var totalClicks = 0;
 var voteTotal = [];
 
@@ -47,13 +47,13 @@ function randomImages(){
 
   var randIndexes = [];
 
-  randIndexes[0] = (generateRandom());
+  randIndexes[0] = generateRandom();
 
-  randIndexes[1] = (generateRandom());
+  randIndexes[1] = generateRandom();
 
 
   //CHECK FOR DUPLICATE STEP 1
-  console.log('check loop', randIndexes);
+  // console.log('check loop', randIndexes);
   while(randIndexes[0] === randIndexes[1]){
     randIndexes[1] = generateRandom();
     console.log('duplicate prevented');
@@ -116,10 +116,11 @@ function clickImage(e){
 function showResults() {
 
   for (var i in allProducts) {
-    var listElement = document.createElement('li');
-    listElement.innerHTML = allProducts[i].votes + ' clicks for ' + allProducts[i].name;
-    unorderedList.appendChild(listElement);
+    // var listElement = document.createElement('li');
+    // listElement.innerHTML = allProducts[i].votes + ' clicks for ' + allProducts[i].name;
+    // unorderedList.appendChild(listElement);
     //push all the votes into the voteTotal array to use for the chart. After all this will be displayed
+    localStorage.setItem('chartData', JSON.stringify(allProducts));
     voteTotal.push(allProducts[i].votes);
 
   }
@@ -153,16 +154,15 @@ function renderChart(){
 
 
   //setting items to local storage when rendering chart
-  localStorage.setItem('chartData', JSON.stringify(allProducts));
 
   // var namesOfImages = [];
-  var clicksOfImages = [];
+  // var clicksOfImages = [];
 
-  for (var i of allProducts)
-  {
-    // namesOfImages.push(i.name);
-    clicksOfImages.push(i.votes);
-  }
+  // for (var i of allProducts)
+  // {
+  //   // namesOfImages.push(i.name);
+  //   clicksOfImages.push(i.votes);
+  // }
 
 
   var chart = new Chart(context,{
@@ -171,12 +171,13 @@ function renderChart(){
       labels: productNames,
       datasets:[{
         label: 'Number of votes',
-        data: clicksOfImages,
+        data: voteTotal,
         backgroundColor: colorArray,
         borderWidth: 1,
 
       }],
       options: {
+        responsive: false,
         scales: {
           yAxes: [{
             ticks: {

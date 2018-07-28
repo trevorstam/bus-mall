@@ -1,0 +1,45 @@
+*{
+    outline:dotted 1px red;
+}
+
+
+div {
+    display:inline-block;
+    width:30%;
+    left:5%;
+}
+img {
+    position:center;
+    left:5%;
+    display:inline-block;
+    height:300px;
+    width:300px;
+}
+#vote1, #vote2, #vote3 {
+    position:relative;
+    display: inline-block;
+    left:5%;
+}
+#vote1 {
+    left:15%;
+}
+#vote2 {
+    left:37.5%;
+}
+#vote3 {
+    left:60%;
+}
+
+#scores {
+    display:inline-block;
+
+}
+#views {
+    display:inline-block;
+}
+
+.imageSelection {
+    border: 5px solid blue;
+    width:90%;
+    left:5%;
+}
