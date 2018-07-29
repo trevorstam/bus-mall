@@ -12,7 +12,9 @@ var leftImage = document.getElementById('left');
 var centerImage = document.getElementById('center');
 var rightImage = document.getElementById('right');
 var imageContainer = document.getElementById('image-container');
+var unorderedList = document.getElementById('results');
 var totalClicks = 0;
+var voteTotal = [];
 
 //constructor function
 function Product(name){
@@ -91,8 +93,9 @@ function clickImage(e){
   totalClicks++;
   console.log('totalclicks', totalClicks);
 
-  if (totalClicks > 24){    
+  if (totalClicks > 24){
     imageContainer.removeEventListener('click', clickImage);
+    showResults();
 
     return alert('No more clicks left');
   }
@@ -101,6 +104,16 @@ function clickImage(e){
   randomImages();
 }
 
+function showResults() {
+  for (var i in allProducts) {
+    var listElement = document.createElement('li');
+    listElement.innerHTML = allProducts[i].votes + ' clicks for ' + allProducts[i].name;
+    unorderedList.appendChild(listElement);
+    //push all the votes into the voteTotal array to use for the chart. After all this will be displayed
+    voteTotal.push(allProducts[i].votes);
+
+  }
+}
 randomImages();
 
 imageContainer.addEventListener('click', clickImage);
