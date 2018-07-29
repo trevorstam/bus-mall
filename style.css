@@ -1,0 +1,96 @@
+body {
+    background-color: rgb(77, 30, 30);
+}
+
+.container {
+    margin: 0 auto;
+    width: 960px;
+    background-color: wheat;
+}
+
+header {
+    margin: 2.5% 2.5% 2.5% 2.5%;
+    border-bottom:1px solid saddlebrown;
+}
+
+h1 {
+    font-family: 'Do Hyeon', sans-serif;
+    font-weight: bold;
+    font-size: 4em;
+    color: steelblue;
+    margin-top: 2.5%;
+
+    text-align: center;
+    padding-top: 2.5%;
+}
+
+#bus-pic {
+    width: 300px;
+    height: auto;
+}
+
+nav {
+    position: relative;
+    display: inline-block;
+    padding-top: 1%;
+    padding-bottom: 1.5%;
+    text-align: center;
+    margin-left: 1%;
+}
+
+nav a {
+    margin: 0 auto;
+    text-align: center;
+    border:1px solid saddlebrown;
+    padding: 10px;
+    font-family: 'Do Hyeon', sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+h3 {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 2em;
+    color: rgb(180, 92, 70);
+    text-align: left;
+    padding-top: 2.5%;
+
+}
+
+#introduction {
+    font-family: 'Do Hyeon', sans-serif;
+    font-size: 1.2em;
+    color: rgb(121, 70, 180);
+    margin-left: 2.5%;
+}
+
+#image-container {
+    margin-top: 5%;
+    margin-left: 2.5%;
+
+}
+
+img {
+    position: relative;
+    width: 300px;
+    height: 300px;
+}
+
+#chart {
+    margin: auto;
+    width: 800px;
+    height: 400px;
+}
+
+footer {
+    height: 60px;
+    position: relative;
+    text-align: center;
+    font-family: 'Do Hyeon', sans-serif;
+    font-weight: bold;
+    font-style: italic;
+    border-top: 1px solid saddlebrown;
+    vertical-align: baseline;
+    padding-top: 2.5%;
+}
+
