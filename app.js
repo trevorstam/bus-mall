@@ -134,9 +134,9 @@ function showResults() {
 
 function showResults() {
   for (var i in allProducts) {
-    var listElement = document.createElement('li');
-    listElement.innerHTML = allProducts[i].votes + ' clicks for ' + allProducts[i].name;
-    unorderedList.appendChild(listElement);
+    // var listElement = document.createElement('li');
+    // listElement.innerHTML = allProducts[i].votes + ' clicks for ' + allProducts[i].name;
+    // unorderedList.appendChild(listElement);
     //push all the votes into the voteTotal array to use for the chart. After all this will be displayed
     voteTotal.push(allProducts[i].votes);
 
