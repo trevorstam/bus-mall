@@ -20,7 +20,7 @@ var centerImage = document.getElementById('center');
 var rightImage = document.getElementById('right');
 var imageContainer = document.getElementById('image-container');
 
-var unorderedList = document.getElementById('results');
+// var unorderedList = document.getElementById('results');
 
 // var unorderedList = document.getElementById('results');
 var totalClicks = 0;
