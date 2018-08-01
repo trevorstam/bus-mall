@@ -125,8 +125,10 @@ function showResults() {
     // listElement.innerHTML = allProducts[i].votes + ' clicks for ' + allProducts[i].name;
     // unorderedList.appendChild(listElement);
     //push all the votes into the voteTotal array to use for the chart. After all this will be displayed
-    localStorage.setItem('chartData', JSON.stringify(allProducts));
+    
     voteTotal.push(allProducts[i].votes);
+
+    localStorage.setItem('chartData', JSON.stringify(allProducts));
 
   }
 }
