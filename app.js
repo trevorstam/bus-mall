@@ -156,6 +156,7 @@ function renderChart(){
 
 
   //setting items to local storage when rendering chart
+  // localStorage.setItem('chartData', JSON.stringify(allProducts));
 
   // var namesOfImages = [];
   // var clicksOfImages = [];
